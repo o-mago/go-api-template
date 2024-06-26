@@ -112,11 +112,11 @@ func OtelAttrsFromCtx(ctx context.Context) []attribute.KeyValue {
 	attrs := otelDefaultAttrs()
 
 	if requestID, ok := ctxkey.GetRequestID(ctx); ok {
-		attrs = append(attrs, attribute.String("stn.request_id", requestID))
+		attrs = append(attrs, attribute.String("request_id", requestID))
 	}
 
 	if idempotencyKey, ok := ctxkey.GetIdempotencyKey(ctx); ok {
-		attrs = append(attrs, attribute.String("stn.idempotency_key", idempotencyKey))
+		attrs = append(attrs, attribute.String("idempotency_key", idempotencyKey))
 	}
 
 	return attrs
@@ -128,7 +128,7 @@ func otelDefaultAttrs() []attribute.KeyValue {
 		attribute.String("env", _otelEnv),
 		attribute.String("version", _otelVersion),
 		attribute.String("language", "go"),
-		attribute.String("component", "stn.telemetry.otel"),
+		attribute.String("component", "telemetry.otel"),
 	}
 }
 
